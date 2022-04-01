@@ -19,6 +19,7 @@ import 'package:project_management/app/shared_components/selection_button.dart';
 import 'package:project_management/app/shared_components/task_card.dart';
 import 'package:project_management/app/shared_components/today_text.dart';
 import 'package:project_management/app/utils/helpers/app_helpers.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 // binding
 part '../../bindings/dashboard_binding.dart';
@@ -291,13 +292,11 @@ class DashboardScreen extends GetView<DashboardController> {
                   return showDialog(
                     context: context,
                     builder: (ctx) => CupertinoAlertDialog(
-                      title: Text("Choose Action"),
+                      title: const Text("Choose Action"),
                       actions: [
-                        CupertinoDialogAction(onPressed: () {}, child: const Text("Add new member")),
-                        CupertinoDialogAction(onPressed: () {}, child: const Text("Manage members")),
-                        CupertinoDialogAction(onPressed: () {}, child: const Text("Manage task")),
-                        CupertinoDialogAction(onPressed: () {}, child: const Text("Finish task")),
-                        CupertinoDialogAction(onPressed: () {}, child: const Text("Cancel Task")),
+                        CupertinoDialogAction(onPressed: () {}, child: const Text("Add sub-task")),
+                        CupertinoDialogAction(onPressed: () {}, child: const Text("Edit  budget")),
+                        CupertinoDialogAction(onPressed: () {}, child: const Text("Delete Task")),
                       ],
                     ),
                   );
@@ -308,9 +307,9 @@ class DashboardScreen extends GetView<DashboardController> {
                   return showDialog(
                     context: context,
                     builder: (ctx) => CupertinoAlertDialog(
-                      title: Text("Choose Action"),
+                      title: const Text("Change  Task  Status"),
                       actions: [
-                        CupertinoDialogAction(onPressed: () {}, child: const Text("Start Task")),
+                        CupertinoDialogAction(onPressed: () {}, child: const Text("Start task")),
                         CupertinoDialogAction(onPressed: () {}, child: const Text("Finish task")),
                         CupertinoDialogAction(onPressed: () {}, child: const Text("Cancel task")),
                       ],
@@ -319,6 +318,21 @@ class DashboardScreen extends GetView<DashboardController> {
                 },
                 onPressedContributors: () {
                   print("More users ");
+                  return showDialog(
+                    context: context,
+                    builder: (ctx) => CupertinoAlertDialog(
+                      title: const Text("Choose Action"),
+                      actions: [
+                        CupertinoDialogAction(
+                            onPressed: () {
+                              addNewMberForm(context);
+                            },
+                            child: const Text("Add new member")),
+                        CupertinoDialogAction(onPressed: () {}, child: const Text("View members")),
+                        CupertinoDialogAction(onPressed: () {}, child: const Text("Manage members")),
+                      ],
+                    ),
+                  );
                 },
                 onPressedComments: () {
                   print("More comments ");
@@ -347,7 +361,9 @@ class DashboardScreen extends GetView<DashboardController> {
         children: [
           _TeamMember(
             totalMember: data.length,
-            onPressedAdd: () {},
+            onPressedAdd: () {
+              print("Adding New User ");
+            },
           ),
           const SizedBox(height: kSpacing / 2),
           ListProfilImage(maxImages: 6, images: data),
@@ -369,5 +385,43 @@ class DashboardScreen extends GetView<DashboardController> {
           )
           .toList(),
     ]);
+  }
+
+  void addNewMberForm(context) {
+    Alert(
+        context: context,
+        title: "New Member Details",
+        content: Column(
+          children: const <Widget>[
+            TextField(
+              decoration: InputDecoration(
+                icon: Icon(Icons.account_circle),
+                labelText: 'Full Name',
+              ),
+            ),
+            TextField(
+              decoration: InputDecoration(
+                icon: Icon(Icons.phone),
+                labelText: 'Phone number ',
+              ),
+            ),
+            TextField(
+              decoration: InputDecoration(
+                icon: Icon(Icons.work),
+                labelText: 'Role',
+              ),
+            ),
+          ],
+        ),
+        buttons: [
+          DialogButton(
+            onPressed: () => Navigator.pop(context),
+            color: Color.fromRGBO(3, 108, 218, 1.0),
+            child: const Text(
+              "ADD TO TEAM",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+          )
+        ]).show();
   }
 }

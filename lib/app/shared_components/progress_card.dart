@@ -55,18 +55,18 @@ class ProgressCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "You Have ${data.totalUndone} Undone Tasks",
-                  style: const TextStyle(fontWeight: FontWeight.w500),
+                const Text(
+                  "Manage all your project",
+                  style: TextStyle(fontWeight: FontWeight.w500),
                 ),
                 Text(
-                  "${data.totalTaskInProress} Tasks are in progress",
+                  "Manage all your project",
                   style: TextStyle(color: kFontColorPallets[1]),
                 ),
                 const SizedBox(height: kSpacing),
                 ElevatedButton(
                   onPressed: onPressedCheck,
-                  child: const Text("Check"),
+                  child: const Text("Add New Project"),
                 )
               ],
             ),

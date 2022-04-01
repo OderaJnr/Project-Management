@@ -34,8 +34,8 @@ class ProgressReportCard extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           colors: [
-            Color.fromRGBO(111, 88, 255, 1),
-            Color.fromRGBO(157, 86, 248, 1),
+            Color.fromRGBO(3, 108, 218, 1.0),
+            Color.fromRGBO(21, 245, 253, 1.0),
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
