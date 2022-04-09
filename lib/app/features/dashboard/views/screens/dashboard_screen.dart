@@ -2,6 +2,7 @@ library dashboard;
 
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -34,6 +35,8 @@ part '../components/profile_tile.dart';
 part '../components/recent_messages.dart';
 part '../components/sidebar.dart';
 part '../components/team_member.dart';
+
+CollectionReference users = FirebaseFirestore.instance.collection('users');
 
 class DashboardScreen extends GetView<DashboardController> {
   const DashboardScreen({Key? key}) : super(key: key);
@@ -294,7 +297,12 @@ class DashboardScreen extends GetView<DashboardController> {
                     builder: (ctx) => CupertinoAlertDialog(
                       title: const Text("Choose Action"),
                       actions: [
-                        CupertinoDialogAction(onPressed: () {}, child: const Text("Add sub-task")),
+                        CupertinoDialogAction(
+                            onPressed: () {
+                              print("NEW USER CLICKED");
+                              addnewProject();
+                            },
+                            child: const Text("Add sub-task")),
                         CupertinoDialogAction(onPressed: () {}, child: const Text("Edit  budget")),
                         CupertinoDialogAction(onPressed: () {}, child: const Text("Delete Task")),
                       ],
@@ -423,5 +431,21 @@ class DashboardScreen extends GetView<DashboardController> {
             ),
           )
         ]).show();
+  }
+
+  Future<void> addnewProject() async {
+    // Call the user's CollectionReference to add a new user
+
+    print("Started user add");
+
+    final firestoreInstance = FirebaseFirestore.instance;
+
+    firestoreInstance.collection("users").add({
+      "name": "john",
+      "age": 50,
+      "email": "example@example.com",
+    }).then((value) {
+      print("Added Successfully");
+    }).catchError((error) => print("Failed to add user: $error"));
   }
 }

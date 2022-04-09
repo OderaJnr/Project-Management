@@ -21,7 +21,7 @@ class DashboardController extends GetxController {
   List<TaskCardData> getAllTask() {
     return [
       const TaskCardData(
-        title: "WestSide Shop Renovation",
+        title: "Shop Renovation",
         dueDay: 2,
         totalComments: 50,
         type: TaskType.todo,
@@ -34,7 +34,7 @@ class DashboardController extends GetxController {
         ],
       ),
       const TaskCardData(
-        title: "3 Bedroom Seme Project",
+        title: "House construction",
         dueDay: -1,
         totalComments: 50,
         totalContributors: 34,
@@ -110,7 +110,7 @@ class DashboardController extends GetxController {
       ChattingCardData(
         image: AssetImage(ImageRasterPath.avatar6),
         isOnline: true,
-        name: "Samantha",
+        name: "BRIAN",
         lastMessage: "i added my new tasks",
         isRead: false,
         totalUnread: 100,
@@ -118,7 +118,7 @@ class DashboardController extends GetxController {
       ChattingCardData(
         image: AssetImage(ImageRasterPath.avatar3),
         isOnline: false,
-        name: "John",
+        name: "JOHN",
         lastMessage: "well done john",
         isRead: true,
         totalUnread: 0,
@@ -126,7 +126,7 @@ class DashboardController extends GetxController {
       ChattingCardData(
         image: AssetImage(ImageRasterPath.avatar4),
         isOnline: true,
-        name: "Alexander Purwoto",
+        name: "ODERA",
         lastMessage: "we'll have a meeting at 9AM",
         isRead: false,
         totalUnread: 1,

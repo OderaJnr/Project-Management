@@ -4,9 +4,9 @@ extension TaskTypeExtension on TaskType {
   Color getColor() {
     switch (this) {
       case TaskType.done:
-        return Colors.lightBlue;
+        return Colors.green;
       case TaskType.inProgress:
-        return Colors.amber[700]!;
+        return Colors.lightBlue[700]!;
       default:
         return Colors.redAccent;
     }
